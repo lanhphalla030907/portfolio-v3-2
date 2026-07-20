@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import * as React from "react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
   // Avoid hydration mismatch
   React.useEffect(() => {
-    setMounted(true)
-  }, [])
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!mounted) {
     return (
       <div className="w-10 h-10 rounded-full bg-transparent border border-transparent" />
-    )
+    );
   }
 
   return (
@@ -31,5 +32,5 @@ export function ThemeToggle() {
         <Sun className="w-5 h-5 transition-all" />
       )}
     </button>
-  )
+  );
 }

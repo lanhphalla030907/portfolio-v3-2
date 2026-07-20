@@ -1,5 +1,5 @@
 import CardNav from "@/components/CardNav";
-import logo from '@/app/favicon.ico'
+const logo= './image.png'
 export const Navbar = () => {
   const items = [
     {
@@ -42,7 +42,7 @@ export const Navbar = () => {
       buttonBgColor="#111"
       buttonTextColor="#fff"
       ease="power3.out"
-  theme="light"
+      theme="light"
 />
   );
 };
