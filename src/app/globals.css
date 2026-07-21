@@ -138,6 +138,17 @@
 }
 
 @layer base {
+  html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    min-width: 320px;
+    overflow-x: clip;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -146,5 +157,24 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .site-container {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .site-container {
+      width: min(100% - 3rem, 80rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-container {
+      width: min(100% - 4rem, 80rem);
+    }
   }
 }

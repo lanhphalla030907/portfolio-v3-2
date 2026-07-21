@@ -1,11 +1,11 @@
-import Lanyard from "@/components/Lanyard";
+import Lanyard from "@/components/ui/Lanyard";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import LightRays from "@/components/LightRays";
+import LightRays from "@/components/ui/LightRays";
 import SkillsMarquee from "@/components/SkillsMarquee";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-white dark:bg-zinc-950 transition-colors duration-500 overflow-x-hidden font-sans text-gray-900 dark:text-gray-100">
+    <main id="home" className="relative min-h-screen overflow-x-clip bg-white font-sans text-gray-900 transition-colors duration-500 dark:bg-zinc-950 dark:text-gray-100">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 opacity-40 dark:opacity-60">
           <LightRays
@@ -21,11 +21,11 @@ export default function Home() {
 
       <ThemeToggle />
 
-      {/* Mobile Layout - KEEP ORIGINAL */}
-      <div className="relative z-10 md:hidden flex flex-col items-center justify-start py-20 px-6 gap-10 min-h-screen">
+      {/* Flow layout stays active through tablet widths, preventing the hero from colliding. */}
+      <div className="relative  flex min-h-screen flex-col items-center justify-start gap-10 px-6 py-20 lg:hidden sm:px-10">
         <section className="w-full text-center mt-4">
           <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1 tracking-wider uppercase">
-            Hello, I'm
+            Hello, I&apos;
           </p>
 
           <h1 className="text-6xl font-black leading-[0.8] tracking-tighter text-gray-900 dark:text-white">
@@ -46,11 +46,11 @@ export default function Home() {
           </button>
         </section>
 
-        <div className="w-full h-[350px] -my-8">
+        <div className="-my-8 h-[350px] w-full max-w-md sm:h-[420px]">
           <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
         </div>
 
-        <section className="w-full grid grid-cols-2 gap-y-10 gap-x-4 text-center pb-12">
+        <section className="grid w-full max-w-lg grid-cols-2 gap-x-4 gap-y-10 pb-12 text-center">
           <div>
             <h2 className="text-4xl font-black text-gray-900 dark:text-white tracking-tighter">
               2+
@@ -86,12 +86,12 @@ export default function Home() {
         </section>
       </div>
 
-      {/* Desktop Layout - KEEP EVERYTHING ORIGINAL, just add max-w-7xl and responsive positioning */}
-      <div className="relative z-10 hidden md:block h-screen overflow-hidden">
-        <div className="relative w-full h-full max-w-9xl mx-auto">
+      {/* The three-column layout begins only when there is room for the 3D scene. */}
+      <div className="relative hidden min-h-[42rem] overflow-hidden lg:block lg:h-[max(100svh,42rem)]">
+        <div className="site-container grid h-full grid-cols-[minmax(15rem,1fr)_minmax(20rem,30rem)_minmax(10rem,1fr)] items-center gap-4 xl:gap-8">
           
           {/* LEFT - KEEP ORIGINAL SIZE */}
-          <section className="absolute left-[8%] lg:left-[12%] xl:left-[18%] top-1/2 -translate-y-1/2 z-20 w-[240px] lg:w-[280px] xl:w-[320px]">
+          <section className="min-w-0 max-w-[20rem]">
             <p className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm font-semibold mb-2 tracking-[0.2em] uppercase">
               Hello, I&apos;m
             </p>
@@ -119,14 +119,14 @@ export default function Home() {
           </section>
 
           {/* CENTER - Lanyard KEEP ORIGINAL SIZE */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-full h-full pointer-events-auto">
+          <div className="col-start-2 h-full min-h-[42rem]">
+            <div className="h-full w-full">
               <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
             </div>
           </div>
 
           {/* RIGHT - KEEP ORIGINAL SIZE */}
-          <section className="absolute right-[8%] lg:right-[12%] xl:right-[18%] top-1/2 -translate-y-1/2 z-20 text-right space-y-10 lg:space-y-12">
+          <section className=" min-w-0 justify-self-end text-right space-y-10 lg:space-y-12">
             <div>
               <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 dark:text-white tracking-tighter">
                 2+

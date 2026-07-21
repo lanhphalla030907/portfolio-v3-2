@@ -332,7 +332,7 @@ export default function SelectedProjects() {
   const { springX, springY } = useCursorGlow();
 
   return (
-    <div className="container mx-auto px-4 py-16 max-w-7xl relative">
+    <section id="projects" className="site-container relative py-16">
       {/* Subtle cursor glow */}
       <motion.div
         style={{
@@ -437,6 +437,6 @@ export default function SelectedProjects() {
         isOpen={!!dialogProject}
         onClose={() => setDialogProject(null)}
       />
-    </div>
+    </section>
   );
 }

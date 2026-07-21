@@ -22,7 +22,7 @@ import {
 } from "react-icons/si";
 import { FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
-import LogoLoop, { LogoItem } from "./LogoLoop";
+import LogoLoop, { LogoItem } from "./ui/LogoLoop";
 
 interface TechItem {
   name: string;
@@ -129,12 +129,12 @@ export default function TechStack() {
   const fadeColor = isDark ? '#18181b' : '#fafafa';
 
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section id="tech-stack" className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
       {/* Subtle background accents */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-200/40 via-transparent to-transparent dark:from-zinc-800/20" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-zinc-200/30 via-transparent to-transparent dark:from-zinc-800/10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="site-container relative">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <motion.span

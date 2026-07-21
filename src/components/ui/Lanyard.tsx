@@ -49,7 +49,7 @@ export default function Lanyard({
   transparent = true,
 }: LanyardProps) {
   return (
-    <div className="relative z-0 w-full h-full flex justify-center items-center transform scale-100 origin-center">
+    <div className="relative z-0 w-full h-full flex justify-center items-center">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent }}
@@ -102,7 +102,6 @@ interface BandProps {
 }
 
 function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
-  // Using "any" for refs since the exact types depend on Rapier's internals
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
   const j1 = useRef<any>(null);
@@ -218,7 +217,6 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
 
   const meshLineGeom = useMemo(() => new MeshLineGeometry(), []);
   const meshLineMat = useMemo(() => {
-    // MeshLineMaterial expects some non-React props; create it imperatively and keep it stable.
     const mat: any = new MeshLineMaterial({
       color: "white",
       depthTest: false,

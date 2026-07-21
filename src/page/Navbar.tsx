@@ -1,5 +1,5 @@
-import CardNav from "@/components/CardNav";
-const logo= './image.png'
+import CardNav from "@/components/ui/CardNav";
+const logo = "/image.png";
 export const Navbar = () => {
   const items = [
     {
@@ -7,8 +7,8 @@ export const Navbar = () => {
       bgColor: "#1B1722",
       textColor: "#fff",
       links: [
-        { label: "Company", ariaLabel: "About Company" },
-        { label: "Careers", ariaLabel: "About Careers" }
+        { label: "About me", href: "#about", ariaLabel: "Go to about me" },
+        { label: "Tech stack", href: "#tech-stack", ariaLabel: "Go to tech stack" }
       ]
     },
     {
@@ -16,8 +16,8 @@ export const Navbar = () => {
       bgColor: "#2F293A",
       textColor: "#fff",
       links: [
-        { label: "Featured", ariaLabel: "Featured Projects" },
-        { label: "Case Studies", ariaLabel: "Project Case Studies" }
+        { label: "Featured", href: "#projects", ariaLabel: "Go to featured projects" },
+        { label: "Case studies", href: "#projects", ariaLabel: "Go to project case studies" }
       ]
     },
     {
@@ -25,9 +25,9 @@ export const Navbar = () => {
       bgColor: "#2F293A", 
       textColor: "#fff",
       links: [
-        { label: "Email", ariaLabel: "Email us" },
-        { label: "Twitter", ariaLabel: "Twitter" },
-        { label: "LinkedIn", ariaLabel: "LinkedIn" }
+        { label: "Email", href: "#contact", ariaLabel: "Go to contact form" },
+        { label: "Phone", href: "tel:+855962657233", ariaLabel: "Call Lanh Phalla" },
+        { label: "LinkedIn", href: "#contact", ariaLabel: "Go to contact details" }
       ]
     }
   ];
@@ -42,7 +42,6 @@ export const Navbar = () => {
       buttonBgColor="#111"
       buttonTextColor="#fff"
       ease="power3.out"
-      theme="light"
 />
   );
 };

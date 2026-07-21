@@ -100,13 +100,10 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 
 export default function AboutMe() {
   return (
-    <section className="relative min-h-screen flex items-center">
+    <section id="about" className="relative flex min-h-[34rem] items-center py-20 lg:min-h-screen lg:py-0">
       <div
         className="
-        max-w-7xl
-        mx-auto
-        px-6
-        lg:px-8
+        site-container
         w-full
         "
       >
@@ -150,7 +147,9 @@ export default function AboutMe() {
             digital experiences that combine great design with powerful
             technology.
           </ScrollReveal>
-           <InteractiveHoverButton>View More About Me</InteractiveHoverButton>
+          <div className="mt-8 flex justify-center">
+            <InteractiveHoverButton>View More About Me</InteractiveHoverButton>
+          </div>
         </div>
       </div>
     </section>
