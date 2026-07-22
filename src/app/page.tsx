@@ -2,9 +2,9 @@ import React from 'react'
 import HomePage from '@/page/HomePage'
 import { Navbar } from '@/page/Navbar'
 import AboutMe from '@/page/AboutMe'
+import ContactPage from '@/page/ContactPage'
 import TechStack from '@/components/TechStack'
 import SelectedProjects from '@/components/SelectedProjects'
-import ContactPage from '@/page/ContactPage'
 const page = () => {
   return (
     <div className="overflow-x-clip">

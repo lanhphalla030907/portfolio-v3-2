@@ -97,6 +97,7 @@
 // }
 import ScrollReveal from "@/components/ScrollReveal";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import Link from "next/link";
 
 export default function AboutMe() {
   return (
@@ -148,7 +149,9 @@ export default function AboutMe() {
             technology.
           </ScrollReveal>
           <div className="mt-8 flex justify-center">
+            <Link href="/about">
             <InteractiveHoverButton>View More About Me</InteractiveHoverButton>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,131 +1,32 @@
 "use client";
+
 import React, { useMemo, useState, useEffect } from "react";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiJavascript,
-  SiHtml5,
-  SiNodedotjs,
-  SiExpress,
-  SiLaravel,
-  SiSpringboot,
-  SiPython,
-  SiPhp,
-  SiMongodb,
-  SiMysql,
-  SiPostgresql,
-  SiFirebase,
-  SiSupabase,
-  SiRedis,
-} from "react-icons/si";
-import { FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
-import LogoLoop, { LogoItem } from "./ui/LogoLoop";
-
-interface TechItem {
-  name: string;
-  icon: React.ReactNode;
-  color: string;
-  percentage: number;
-}
-
-interface TechCategory {
-  title: string;
-  icon: React.ReactNode;
-  color: string;
-  technologies: TechItem[];
-}
-
-const techStackData: TechCategory[] = [
-  {
-    title: "Frontend",
-    icon: <SiReact className="text-xl" />,
-    color: "from-blue-500 to-cyan-400",
-    technologies: [
-      { name: "React", icon: <SiReact />, color: "#61DAFB", percentage: 90 },
-      { name: "Next.js", icon: <SiNextdotjs />, color: "#000000", percentage: 85 },
-      { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6", percentage: 88 },
-      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06B6D4", percentage: 92 },
-      { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E", percentage: 95 },
-      { name: "HTML5", icon: <SiHtml5 />, color: "#E34F26", percentage: 98 },
-    ],
-  },
-  {
-    title: "Backend",
-    icon: <SiNodedotjs className="text-xl" />,
-    color: "from-green-500 to-emerald-400",
-    technologies: [
-      { name: "Node.js", icon: <SiNodedotjs />, color: "#339933", percentage: 85 },
-      { name: "Express.js", icon: <SiExpress />, color: "#000000", percentage: 82 },
-      { name: "Laravel", icon: <SiLaravel />, color: "#FF2D20", percentage: 78 },
-      { name: "Spring Boot", icon: <SiSpringboot />, color: "#6DB33F", percentage: 70 },
-      { name: "Python", icon: <SiPython />, color: "#3776AB", percentage: 75 },
-      { name: "PHP", icon: <SiPhp />, color: "#777BB4", percentage: 80 },
-    ],
-  },
-  {
-    title: "Database",
-    icon: <FaDatabase className="text-xl" />,
-    color: "from-purple-500 to-pink-400",
-    technologies: [
-      { name: "MongoDB", icon: <SiMongodb />, color: "#47A248", percentage: 80 },
-      { name: "MySQL", icon: <SiMysql />, color: "#4479A1", percentage: 85 },
-      { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1", percentage: 78 },
-      { name: "Firebase", icon: <SiFirebase />, color: "#FFCA28", percentage: 75 },
-      { name: "Supabase", icon: <SiSupabase />, color: "#3ECF8E", percentage: 70 },
-      { name: "Redis", icon: <SiRedis />, color: "#DC382D", percentage: 65 },
-    ],
-  },
-];
+import LogoLoop from "./ui/LogoLoop";
+import { techStackData, getAllTechnologies } from "@/data/techStack";
+import { convertTechToLogoItems } from "@/utils/logoHelpers";
 
 export default function TechStack() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check if dark mode is active
     const checkDarkMode = () => {
       const isDarkMode = document.documentElement.classList.contains('dark');
       setIsDark(isDarkMode);
     };
 
     checkDarkMode();
-
-    // Observe for class changes on html element
     const observer = new MutationObserver(checkDarkMode);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
     return () => observer.disconnect();
   }, []);
 
-  // Collect all technologies from all categories for the logo loop
-  const allTechnologies = useMemo(() => {
-    return techStackData.flatMap(category => category.technologies);
-  }, []);
+  // Get all technologies from data
+  const allTechnologies = useMemo(() => getAllTechnologies(), []);
+  
+  // Convert to LogoItems
+  const logoItems = useMemo(() => convertTechToLogoItems(allTechnologies), [allTechnologies]);
 
-  // Convert all tech items to LogoLoop format - icon and name side by side
-  const logoItems: LogoItem[] = useMemo(() => {
-    return allTechnologies.map((tech) => ({
-      node: (
-        <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/5 dark:bg-zinc-800/30 border border-zinc-200/30 dark:border-zinc-700/30 hover:border-zinc-300/60 dark:hover:border-zinc-600/50 transition-all duration-300 hover:shadow-md hover:scale-105">
-          <span
-            className="text-2xl flex-shrink-0 transition-transform duration-300"
-            style={{ color: tech.color }}
-          >
-            {tech.icon}
-          </span>
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 whitespace-nowrap">
-            {tech.name}
-          </span>
-        </div>
-      ),
-      title: tech.name,
-      ariaLabel: tech.name,
-    }));
-  }, [allTechnologies]);
-
-  // Get fade color based on theme
   const fadeColor = isDark ? '#18181b' : '#fafafa';
 
   return (
@@ -208,7 +109,6 @@ export default function TechStack() {
                       className="group flex-1 min-w-[120px] max-w-[180px]"
                     >
                       <div className="flex flex-col gap-1.5 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/40 dark:border-zinc-700/30 transition-all duration-200 hover:border-zinc-300/60 dark:hover:border-zinc-600/50 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/60 hover:scale-[1.02]">
-                        {/* Tech Info */}
                         <div className="flex items-center gap-2.5">
                           <span
                             className="text-xl flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
@@ -220,8 +120,6 @@ export default function TechStack() {
                             {tech.name}
                           </span>
                         </div>
-
-                        {/* Percentage Bar */}
                         <div className="flex items-center gap-2">
                           <div className="flex-1 h-1.5 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
                             <motion.div
@@ -248,9 +146,8 @@ export default function TechStack() {
           ))}
         </div>
 
-      </div>
-        {/* Logo Loop Section - Below Tech Stack */}
-       <div className="mt-16">
+        {/* Logo Loop Section */}
+        <div className="mt-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -263,7 +160,9 @@ export default function TechStack() {
             </span>
           </motion.div>
 
-          <div className=" dark:bg-zinc-900/60 border border-zinc-200/40 dark:border-zinc-800/40 backdrop-blur-sm p-3 shadow-sm">
+        </div>
+      </div>
+          <div className="dark:bg-zinc-900/60 border border-zinc-200/40 dark:border-zinc-800/40 backdrop-blur-sm py-3 shadow-sm">
             <LogoLoop
               logos={logoItems}
               speed={40}
@@ -277,7 +176,6 @@ export default function TechStack() {
               fadeOutColor={fadeColor}
             />
           </div>
-        </div>
     </section>
   );
 }
