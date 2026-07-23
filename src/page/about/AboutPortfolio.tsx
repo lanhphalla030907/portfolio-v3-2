@@ -156,7 +156,7 @@ export default function AboutPortfolio() {
               <div className="relative h-[145px] w-[145px]">
                 {/* Outer Circle */}
                 <div className="absolute inset-0 rounded-full bg-[#121216] shadow-[0_25px_60px_rgba(0,0,0,0.45)] flex items-center justify-center">
-                  <SpinningText className="text-[13px] uppercase tracking-[0.3em] font-medium text-white">
+                  <SpinningText className="text-[13px] uppercase tracking-[0.3em] font-medium text-white ">
                     LET'S TALK • LET'S TALK • LET'S TALK •
                   </SpinningText>
                 </div>
@@ -167,7 +167,7 @@ export default function AboutPortfolio() {
                   <button className="group flex h-[58px] w-[58px] items-center justify-center rounded-full border border-white/10 bg-[#17171d] transition-all duration-300 hover:scale-110 hover:bg-white hover:text-black">
                     <ArrowUpRight
                       size={22}
-                      className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                      className="transition-transform text-white duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                     />
                   </button>
                 </div>
