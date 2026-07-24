@@ -1,25 +1,16 @@
 import Lanyard from "@/components/ui/Lanyard";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LightRays from "@/components/ui/LightRays";
 import SkillsMarquee from "@/components/SkillsMarquee";
 
 export default function Home() {
   return (
-    <main id="home" className="relative min-h-screen overflow-x-clip bg-white font-sans text-gray-900 transition-colors duration-500 dark:bg-zinc-950 dark:text-gray-100">
+    <main id="home" className="relative min-h-screen overflow-x-clip font-sans text-gray-900 transition-colors duration-500 dark:text-gray-100">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 opacity-40 dark:opacity-60">
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#6366f1"
-            raysSpeed={0.5}
-            lightSpread={1.2}
-            rayLength={1.8}
-          />
+        
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.05),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.1),transparent_70%)]" />
       </div>
 
-      <ThemeToggle />
 
       {/* Flow layout stays active through tablet widths, preventing the hero from colliding. */}
       <div className="relative  flex min-h-screen flex-col items-center justify-start gap-10 px-6 py-20 lg:hidden sm:px-10">

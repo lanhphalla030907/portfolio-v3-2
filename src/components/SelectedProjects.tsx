@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { InteractiveHoverButton } from "./ui/interactive-hover-button";
 import { ProjectCard, ProjectDialog, Badge } from "./ui/ProjectCard";
 import { Project, projects } from "@/data/projects";
+import Link from "next/link";
 
 // --- Hooks ---
 
@@ -166,21 +167,23 @@ const ProjectItem = ({
   );
 };
 
-// --- Main Component ---
+
 
 export default function SelectedProjects() {
   const [dialogProject, setDialogProject] = useState<Project | null>(null);
   const { springX, springY } = useCursorGlow();
 
   // Sort projects: featured first, then others
-  const sortedProjects = [...projects].sort((a, b) => {
-    if (a.featured && !b.featured) return -1;
-    if (!a.featured && b.featured) return 1;
-    return 0;
-  });
+  const sortedProjects = [...projects]
+    .sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return 0;
+    })
+    .slice(0, 4); // ✅ Only take the first 4 projects
 
   return (
-    <section id="projects" className="site-container relative py-16">
+    <section id="select-project" className="site-container relative py-16">
       {/* Subtle cursor glow */}
       <motion.div
         style={{
@@ -229,7 +232,9 @@ export default function SelectedProjects() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mt-16 pt-10 border-t border-gray-200/60 dark:border-gray-700/60 text-center"
       >
+        <Link href="/project">
         <InteractiveHoverButton>View More</InteractiveHoverButton>
+        </Link>
       </motion.div>
 
       {/* Dialog */}

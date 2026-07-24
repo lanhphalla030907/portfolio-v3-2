@@ -2,11 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import {
   ArrowDown,
   ArrowRight,
@@ -15,9 +12,7 @@ import {
   GraduationCap,
   Sparkles,
 } from "lucide-react";
-import { Navbar } from "@/page/Navbar";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LightRays from "@/components/ui/LightRays";
+import PageLayout from "@/components/layout/PageLayout";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Timeline } from "@/components/ui/timeline";
 import { SpinningText } from "@/components/ui/spinning-text";
@@ -25,89 +20,18 @@ import LogoLoop from "@/components/ui/LogoLoop";
 import SectionTitle from "@/components/SectionTitle";
 import { convertTechToLogoItems } from "@/utils/logoHelpers";
 import { getAllTechnologies } from "@/data/techStack";
-import { journeyData } from "@/data/journey";
 import { capabilitiesData } from "@/data/capabilities";
 import { timelineData } from "@/data/timeline";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function AboutPortfolio() {
-  const rootRef = useRef<HTMLDivElement>(null);
   const allTechnologies = useMemo(() => getAllTechnologies(), []);
   const logoItems = useMemo(
     () => convertTechToLogoItems(allTechnologies),
     [allTechnologies],
   );
 
-  useLayoutEffect(() => {
-    if (
-      !rootRef.current ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
-    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-    const update = (time: number) => lenis.raf(time * 1000);
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(update);
-    const context = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
-        gsap.fromTo(
-          element,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power3.out",
-            scrollTrigger: { trigger: element, start: "top 86%", once: true },
-          },
-        );
-      });
-      gsap.fromTo(
-        "[data-timeline-line]",
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          transformOrigin: "top",
-          ease: "none",
-          scrollTrigger: {
-            trigger: "[data-timeline]",
-            start: "top 70%",
-            end: "bottom 72%",
-            scrub: 0.35,
-          },
-        },
-      );
-    }, rootRef);
-    return () => {
-      context.revert();
-      gsap.ticker.remove(update);
-      lenis.destroy();
-    };
-  }, []);
-
   return (
-    <main
-      ref={rootRef}
-      className="relative min-h-screen overflow-x-clip bg-white font-sans text-zinc-900 transition-colors duration-500 dark:bg-zinc-950 dark:text-zinc-100"
-    >
-      {/* Background Effects */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-35 dark:opacity-55">
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#6366f1"
-            raysSpeed={0.45}
-            lightSpread={1.2}
-            rayLength={1.8}
-          />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.07),transparent_65%)] dark:bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.12),transparent_65%)]" />
-      </div>
-
-      <Navbar />
-      <ThemeToggle />
-
+    <PageLayout>
       {/* Hero Section */}
       <section
         id="about"
@@ -402,6 +326,6 @@ export default function AboutPortfolio() {
           </div>
         </div>
       </section>
-    </main>
+    </PageLayout>
   );
 }
