@@ -3,7 +3,7 @@ import SkillsMarquee from "@/components/SkillsMarquee";
 
 export default function Home() {
   return (
-    <main id="home" className="relative min-h-screen overflow-x-clip font-sans text-gray-900 transition-colors duration-500 dark:text-gray-100">
+    <main id="home" className="relative min-h-screen overflow-visible font-sans text-gray-900 transition-colors duration-500 dark:text-gray-100">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 opacity-40 dark:opacity-60">
         
@@ -12,11 +12,10 @@ export default function Home() {
       </div>
 
 
-      {/* Flow layout stays active through tablet widths, preventing the hero from colliding. */}
       <div className="relative  flex min-h-screen flex-col items-center justify-start gap-10 px-6 py-20 lg:hidden sm:px-10">
         <section className="w-full text-center mt-4">
           <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1 tracking-wider uppercase">
-            Hello, I&apos;
+            Hello, I&apos;m
           </p>
 
           <h1 className="text-6xl font-black leading-[0.8] tracking-tighter text-gray-900 dark:text-white">
@@ -77,7 +76,6 @@ export default function Home() {
         </section>
       </div>
 
-      {/* The three-column layout begins only when there is room for the 3D scene. */}
       <div className="relative hidden min-h-[42rem] overflow-hidden lg:block lg:h-[max(100svh,42rem)]">
         <div className="site-container grid h-full grid-cols-[minmax(15rem,1fr)_minmax(20rem,30rem)_minmax(10rem,1fr)] items-center gap-4 xl:gap-8">
           

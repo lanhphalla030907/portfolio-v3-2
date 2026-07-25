@@ -1,5 +1,6 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
 import CardNav from "@/components/ui/CardNav";
-const logo = "/image.png";
+const logo = "/name.png";
 
 export const Navbar = () => {
   const items = [
@@ -34,13 +35,18 @@ export const Navbar = () => {
       textColor: "#fff",
       links: [
         {
-          label: "Featured",
-          href: "/#projects",
+          label: "Home",
+          href: "/about#homeabout",
           ariaLabel: "Go to featured projects",
         },
         {
-          label: "Case studies",
-          href: "/#projects",
+          label: "Mindset",
+          href: "/about#mindset",
+          ariaLabel: "Go to mindset",
+        },
+        {
+          label: "TimeLine",
+          href: "/about#timeline",
           ariaLabel: "Go to project case studies",
         },
       ],

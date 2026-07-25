@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowDown,
@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
   Code2,
   GraduationCap,
+  Pause,
   Sparkles,
 } from "lucide-react";
 import PageLayout from "@/components/layout/PageLayout";
@@ -30,11 +31,40 @@ export default function AboutPortfolio() {
     [allTechnologies],
   );
 
+  // Music Player State
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const toggleMusic = async () => {
+    if (!audioRef.current) return;
+
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.error("Failed to play audio:", error);
+    }
+  };
+
   return (
     <PageLayout>
+      {/* Audio Element */}
+      <audio
+        ref={audioRef}
+        src="/music/daydreamer.mp3"
+        loop
+        preload="auto"
+        onEnded={() => setIsPlaying(false)}
+      />
+
       {/* Hero Section */}
       <section
-        id="about"
+        id="homeabout"
         className="relative z-10 flex min-h-[44rem] items-center pt-28 sm:min-h-screen"
       >
         <div className="site-container grid items-center py-16 lg:grid-cols-[1.1fr_0.9fr]">
@@ -75,24 +105,34 @@ export default function AboutPortfolio() {
               </div>
             </motion.div>
 
-            {/* Spinning Button */}
+            {/* Spinning Button - Music Player */}
             <div className="absolute bottom-6 right-5 z-20">
               <div className="relative h-[145px] w-[145px]">
                 {/* Outer Circle */}
                 <div className="absolute inset-0 rounded-full bg-[#121216] shadow-[0_25px_60px_rgba(0,0,0,0.45)] flex items-center justify-center">
-                  <SpinningText className="text-[13px] uppercase tracking-[0.3em] font-medium text-white ">
-                    LET'S TALK • LET'S TALK • LET'S TALK •
+                  <SpinningText className="text-[13px] uppercase tracking-[0.3em] font-medium text-white">
+                    {isPlaying ? "NOW PLAYING • DAY DREAMER •" : "PLAY MUSIC • PLAY MUSIC • PLAY MUSIC •"}
                   </SpinningText>
                 </div>
 
                 {/* Middle Ring */}
-                <div className="absolute left-1/2 top-1/2 h-[82px] w-[82px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[#0d0d1 flex items-center justify-center">
-                  {/* Button */}
-                  <button className="group flex h-[58px] w-[58px] items-center justify-center rounded-full border border-white/10 bg-[#17171d] transition-all duration-300 hover:scale-110 hover:bg-white hover:text-black">
-                    <ArrowUpRight
-                      size={22}
-                      className="transition-transform text-white duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                    />
+                <div className="absolute left-1/2 top-1/2 h-[82px] w-[82px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[#0d0d1] flex items-center justify-center">
+                  {/* Music Button */}
+                  <button
+                    onClick={toggleMusic}
+                    className="group flex h-[58px] w-[58px] items-center justify-center rounded-full border border-white/10 bg-[#17171d] transition-all duration-300 hover:scale-110 hover:bg-white"
+                  >
+                    {isPlaying ? (
+                      <Pause
+                        size={22}
+                        className="text-white transition-colors duration-300 group-hover:text-black"
+                      />
+                    ) : (
+                      <ArrowUpRight
+                        size={22}
+                        className="text-white transition-all duration-300 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1"
+                      />
+                    )}
                   </button>
                 </div>
               </div>
@@ -157,7 +197,7 @@ export default function AboutPortfolio() {
       </div>
 
       {/* Developer Mindset Section */}
-      <section className="relative z-10 py-24 sm:py-32">
+      <section id="mindset" className="relative z-10 py-24 sm:py-32">
         <div className="site-container grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <SectionTitle
             eyebrow="Developer mindset"
@@ -186,8 +226,8 @@ export default function AboutPortfolio() {
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="relative z-10 py-10 sm:py-24">
+    
+      <section id="timeline" className="relative z-10 py-10 sm:py-24">
         <div className="max-w-7xl mx-auto px-4">
           <Timeline data={timelineData} />
         </div>

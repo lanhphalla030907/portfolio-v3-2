@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 "use client";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
@@ -22,7 +21,7 @@ import * as THREE from "three";
 
 // replace with your own imports, see the usage snippet for details
 const cardGLB = "./card.glb";
-const lanyard = "./lanyard.png";
+const lanyard = "./logo.png";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -34,7 +33,6 @@ declare global {
     }
   }
 }
-
 interface LanyardProps {
   position?: [number, number, number];
   gravity?: [number, number, number];
@@ -127,7 +125,11 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
 
   useEffect(() => {
     if (texture) {
-      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+
+      texture.anisotropy = 16;
+      texture.needsUpdate = true;
     }
   }, [texture]);
 
@@ -226,8 +228,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
       ),
       useMap: true,
       map: texture,
-      repeat: new THREE.Vector2(-4, 1),
-      lineWidth: 1,
+      repeat: new THREE.Vector2(4, 1),
+      lineWidth: isSmall ? 1 : 2.5,
     } as any);
     return mat;
   }, [texture, isSmall]);
