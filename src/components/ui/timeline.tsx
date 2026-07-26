@@ -49,7 +49,7 @@ export const Timeline = ({ data }: TimelineProps) => {
   return (
     <div className="w-full md:px-10" ref={containerRef}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-5xl mb-4 text-black dark:text-white">
+        <h2 className="text-lg font-bold md:text-5xl mb-4 text-black dark:text-white">
           My Learning Journey
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">

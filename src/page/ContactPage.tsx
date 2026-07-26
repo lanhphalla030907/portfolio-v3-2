@@ -87,7 +87,7 @@ export default function ContactPage() {
     setIsLoading(true);
 
     try {
-      // Send data to Telegram API
+    
       const response = await fetch("/api/telegram", {
         method: "POST",
         headers: {
@@ -148,7 +148,7 @@ export default function ContactPage() {
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-light tracking-tight text-gray-900 dark:text-white">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
             Get in Touch
           </h1>
           <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mx-auto mt-3" />

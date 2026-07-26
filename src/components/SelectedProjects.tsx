@@ -180,7 +180,7 @@ export default function SelectedProjects() {
       if (!a.featured && b.featured) return 1;
       return 0;
     })
-    .slice(0, 4); // ✅ Only take the first 4 projects
+    .slice(0, 4); 
 
   return (
     <section id="select-project" className="site-container relative py-16">
@@ -202,7 +202,7 @@ export default function SelectedProjects() {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="mb-12"
       >
-        <h2 className="text-4xl md:text-5xl font-light tracking-tight text-gray-900 dark:text-white">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
           Selected Work
         </h2>
         <div className="w-12 h-0.5 bg-gray-300 dark:bg-gray-600 mt-3" />

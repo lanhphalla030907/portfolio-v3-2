@@ -10,7 +10,6 @@ import TechStack from "@/components/TechStack";
 import SelectedProjects from "@/components/SelectedProjects";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Footer from "@/page/Footer";
 
 export default function Page() {
   return (
@@ -53,7 +52,6 @@ export default function Page() {
           </div>
         </section>
         
-        <Footer />
       </div>
     </PageLayout>
   );

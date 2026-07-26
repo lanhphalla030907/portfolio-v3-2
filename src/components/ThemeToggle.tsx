@@ -16,14 +16,14 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-10 h-10 rounded-full bg-transparent border border-transparent" />
+      <div className="w-10 h-10 " />
     );
   }
 
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="fixed top-6 right-6 z-50 p-2.5 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-md border border-gray-200 dark:border-gray-800 text-gray-800 dark:text-gray-200 hover:scale-110 transition-all active:scale-95 shadow-sm"
+      className="p-2.5  text-gray-800  hover:scale-110 transition-all active:scale-95 "
       aria-label="Toggle theme"
     >
       {theme === "light" ? (

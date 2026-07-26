@@ -57,17 +57,7 @@ export const Navbar = () => {
       bgColor: "#2F293A",
       textColor: "#fff",
       links: [
-        { label: "Email", href: "/#contact", ariaLabel: "Go to contact form" },
-        {
-          label: "Phone",
-          href: "tel:+855962657233",
-          ariaLabel: "Call Lanh Phalla",
-        },
-        {
-          label: "LinkedIn",
-          href: "/#contact",
-          ariaLabel: "Go to contact details",
-        },
+        
       ],
     },
   ];

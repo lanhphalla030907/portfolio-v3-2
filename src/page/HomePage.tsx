@@ -3,14 +3,14 @@ import SkillsMarquee from "@/components/SkillsMarquee";
 
 export default function Home() {
   return (
-    <main id="home" className="relative min-h-screen overflow-visible font-sans text-gray-900 transition-colors duration-500 dark:text-gray-100">
+    <main
+      id="home"
+      className="relative min-h-screen overflow-visible font-sans text-gray-900 transition-colors duration-500 dark:text-gray-100"
+    >
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-40 dark:opacity-60">
-        
-        </div>
+        <div className="absolute inset-0 opacity-40 dark:opacity-60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.05),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.1),transparent_70%)]" />
       </div>
-
 
       <div className="relative  flex min-h-screen flex-col items-center justify-start gap-10 px-6 py-20 lg:hidden sm:px-10">
         <section className="w-full text-center mt-4">
@@ -28,8 +28,8 @@ export default function Home() {
             Web Developer
           </h2>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm max-w-[280px] mx-auto font-medium">
-            I build modern web applications using React, Next.js, Laravel and
-            embedded systems with ESP32.
+            Transforming ideas into beautiful, responsive, and scalable web
+            applications.
           </p>
           <button className="mt-8 px-8 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-all active:scale-95 text-xs font-bold tracking-widest uppercase">
             Contact Me →
@@ -76,9 +76,8 @@ export default function Home() {
         </section>
       </div>
 
-      <div className="relative hidden min-h-[42rem] overflow-hidden lg:block lg:h-[max(100svh,42rem)]">
+      <div className="relative hidden min-h-[42rem]  overflow-hidden lg:block lg:h-[max(100svh,42rem)]">
         <div className="site-container grid h-full grid-cols-[minmax(15rem,1fr)_minmax(20rem,30rem)_minmax(10rem,1fr)] items-center gap-4 xl:gap-8">
-          
           {/* LEFT - KEEP ORIGINAL SIZE */}
           <section className="min-w-0 max-w-[20rem]">
             <p className="text-gray-500 dark:text-gray-400 text-xs lg:text-sm font-semibold mb-2 tracking-[0.2em] uppercase">
@@ -98,8 +97,8 @@ export default function Home() {
             </h2>
 
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm lg:text-base font-medium max-w-[260px] lg:max-w-none">
-              I build modern web applications using React, Next.js, Laravel and
-              embedded systems with ESP32.
+              Transforming ideas into beautiful, responsive, and scalable web
+              applications.
             </p>
 
             <button className="mt-8 lg:mt-10 px-8 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black hover:opacity-90 transition-all hover:px-10 active:scale-95 text-xs lg:text-sm font-bold tracking-widest uppercase">
@@ -154,8 +153,8 @@ export default function Home() {
           </section>
         </div>
       </div>
-      
-      <SkillsMarquee/>
+
+      <SkillsMarquee />
     </main>
   );
 }
