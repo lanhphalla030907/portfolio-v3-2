@@ -89,7 +89,7 @@ export default function PageLayout({
     >
       <div className={`fixed inset-0 z-0 pointer-events-none ${backgroundClassName}`}>
    
-        <div className="absolute inset-0 opacity-35 dark:opacity-55">
+        {/* <div className="absolute inset-0 opacity-35 dark:opacity-55">
           <LightRays
             raysOrigin="top-center"
             raysColor={raysColor}
@@ -97,7 +97,7 @@ export default function PageLayout({
             lightSpread={1.2}
             rayLength={1.8}
           />
-        </div>
+        </div> */}
 
        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.07),transparent_65%)] dark:bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.12),transparent_65%)]" />

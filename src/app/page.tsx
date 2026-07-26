@@ -1,7 +1,6 @@
 // src/app/page.tsx
 "use client";
 
-import React from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import HomePage from "@/page/HomePage";
 import AboutMe from "@/page/AboutMe";
