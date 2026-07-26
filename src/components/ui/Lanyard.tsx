@@ -50,7 +50,15 @@ export default function Lanyard({
     <div className="relative z-0 w-full h-full flex justify-center items-center">
       <Canvas
         camera={{ position, fov }}
-        gl={{ alpha: transparent }}
+        dpr={[1, 1.5]}
+        gl={{
+          alpha: transparent,
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
+        performance={{
+          min: 0.5,
+        }}
         onCreated={({ gl }) =>
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
         }

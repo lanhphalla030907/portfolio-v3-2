@@ -145,7 +145,7 @@ const LightRays: React.FC<LightRaysProps> = ({
       if (!containerRef.current) return;
 
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 2),
+        dpr: Math.min(window.devicePixelRatio, 1.5), // Changed from 2 to 1.5
         alpha: true
       });
       rendererRef.current = renderer;
@@ -294,7 +294,7 @@ void main() {
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
 
-        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+        renderer.dpr = Math.min(window.devicePixelRatio, 1.5); // Changed from 2 to 1.5
 
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);
@@ -350,13 +350,23 @@ void main() {
         if (renderer) {
           try {
             const canvas = renderer.gl.canvas;
-            const loseContextExt = renderer.gl.getExtension('WEBGL_lose_context');
-            if (loseContextExt) {
-              loseContextExt.loseContext();
-            }
-
+            
+            // Removed dangerous WEBGL_lose_context extension call
+            // Just cleanup the canvas without forcing context loss
             if (canvas && canvas.parentNode) {
               canvas.parentNode.removeChild(canvas);
+            }
+            
+            // Clean up WebGL resources
+            const gl = renderer.gl;
+            if (gl) {
+              // Force cleanup of bound resources
+              gl.bindBuffer(gl.ARRAY_BUFFER, null);
+              gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+              gl.bindTexture(gl.TEXTURE_2D, null);
+              gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+              gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+              gl.useProgram(null);
             }
           } catch (error) {
             console.warn('Error during WebGL cleanup:', error);
