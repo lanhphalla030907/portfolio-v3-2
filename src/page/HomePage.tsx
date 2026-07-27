@@ -109,7 +109,7 @@ export default function Home() {
           {/* CENTER - Lanyard KEEP ORIGINAL SIZE */}
           <div className="col-start-2 h-full min-h-[42rem]">
             <div className="h-full w-full">
-              <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+              <Lanyard lanyardWidth={2}  position={[0, 0, 20]} gravity={[0, -40, 0]} />
             </div>
           </div>
 
