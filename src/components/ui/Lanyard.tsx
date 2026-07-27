@@ -58,14 +58,14 @@ export default function Lanyard({
 }: LanyardProps) {
   // Responsive camera position based on viewport
   const [cameraPos, setCameraPos] = useState(position);
-  
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      
+
       // Only change for mobile, keep desktop as is
       let distance: [number, number, number] = [0, 0, 30]; // default
-      
+
       if (width < 480) {
         // Small mobile
         distance = [0, 0, 18];
@@ -76,23 +76,23 @@ export default function Lanyard({
         // Desktop and tablet - keep original
         distance = position;
       }
-      
+
       setCameraPos(distance);
     };
-    
+
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [position]);
 
   return (
     <div className="relative z-0 w-full h-full flex justify-center items-center">
       <Canvas
         camera={{ position: cameraPos, fov }}
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         gl={{
           alpha: transparent,
-          antialias: false,
+          antialias: true,
           powerPreference: "high-performance",
         }}
         performance={{
@@ -104,7 +104,7 @@ export default function Lanyard({
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={1 / 60}>
-          <Band 
+          <Band
             frontImage={frontImage}
             backImage={backImage}
             imageFit={imageFit}
@@ -157,8 +157,8 @@ interface BandProps {
   lanyardWidth?: number;
 }
 
-function Band({ 
-  maxSpeed = 50, 
+function Band({
+  maxSpeed = 50,
   minSpeed = 0,
   frontImage = null,
   backImage = null,
@@ -191,7 +191,7 @@ function Band({
   const customLanyardTexture = lanyardImage ? useTexture(lanyardImage) : null;
   const frontTexture = frontImage ? useTexture(frontImage) : null;
   const backTexture = backImage ? useTexture(backImage) : null;
-  
+
   const texture = customLanyardTexture || defaultTexture;
 
   useEffect(() => {
@@ -215,18 +215,18 @@ function Band({
   });
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
   const [hovered, hover] = useState(false);
-  
+
   // Responsive scale based on viewport - ONLY change for mobile
   const [cardScale, setCardScale] = useState(2.25);
   const [cardPosition, setCardPosition] = useState([0, -1.2, -0.05]);
-  
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      
+
       let scale = 2.25; // default desktop
       let posY = -1.2;
-      
+
       if (width < 480) {
         // Small mobile
         scale = 3.0;
@@ -240,14 +240,14 @@ function Band({
         scale = 2.25;
         posY = -1.2;
       }
-      
+
       setCardScale(scale);
       setCardPosition([0, posY, -0.05]);
     };
-    
+
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
@@ -310,7 +310,7 @@ function Band({
     const mat: any = new MeshLineMaterial({
       color: "white",
       depthTest: false,
-      resolution: new THREE.Vector2(1000, 1000),
+      resolution: new THREE.Vector2(2500, 2500),
       useMap: true,
       map: texture,
       repeat: new THREE.Vector2(4, 1),
