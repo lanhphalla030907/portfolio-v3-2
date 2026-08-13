@@ -145,7 +145,7 @@ const LightRays: React.FC<LightRaysProps> = ({
       if (!containerRef.current) return;
 
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 1.5), // Changed from 2 to 1.5
+        dpr: 1,
         alpha: true
       });
       rendererRef.current = renderer;
@@ -294,7 +294,7 @@ void main() {
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
 
-        renderer.dpr = Math.min(window.devicePixelRatio, 1.5); // Changed from 2 to 1.5
+        renderer.dpr = 1;
 
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);

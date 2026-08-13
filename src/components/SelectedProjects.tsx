@@ -17,17 +17,27 @@ const useCursorGlow = () => {
   const cursorY = useMotionValue(0);
   const springX = useSpring(cursorX, { stiffness: 100, damping: 25 });
   const springY = useSpring(cursorY, { stiffness: 100, damping: 25 });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const mql = window.matchMedia("(pointer: fine)");
+    const update = () => setEnabled(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     const onMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };
     window.addEventListener("mousemove", onMouseMove);
     return () => window.removeEventListener("mousemove", onMouseMove);
-  }, [cursorX, cursorY]);
+  }, [enabled, cursorX, cursorY]);
 
-  return { springX, springY };
+  return { springX, springY, enabled };
 };
 
 // --- Project Item Component (Same as featured design) ---
@@ -171,7 +181,7 @@ const ProjectItem = ({
 
 export default function SelectedProjects() {
   const [dialogProject, setDialogProject] = useState<Project | null>(null);
-  const { springX, springY } = useCursorGlow();
+  const { springX, springY, enabled } = useCursorGlow();
 
   // Sort projects: featured first, then others
   const sortedProjects = [...projects]
@@ -185,15 +195,19 @@ export default function SelectedProjects() {
   return (
     <section id="select-project" className="site-container relative py-16">
       {/* Subtle cursor glow */}
-      <motion.div
-        style={{
-          x: springX,
-          y: springY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        className="fixed pointer-events-none z-50 w-96 h-96 rounded-full bg-gray-200/10 dark:bg-gray-600/10 blur-3xl"
-      />
+      {enabled && (
+        <motion.div
+          style={{
+            x: springX,
+            y: springY,
+            translateX: "-50%",
+            translateY: "-50%",
+            background:
+              "radial-gradient(circle, rgba(148,163,184,0.10) 0%, transparent 70%)",
+          }}
+          className="fixed pointer-events-none z-50 w-96 h-96 rounded-full"
+        />
+      )}
 
       {/* Section Header */}
       <motion.div

@@ -58,6 +58,19 @@ export default function Lanyard({
 }: LanyardProps) {
   // Responsive camera position based on viewport
   const [cameraPos, setCameraPos] = useState(position);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -86,10 +99,11 @@ export default function Lanyard({
   }, [position]);
 
   return (
-    <div className="relative z-0 w-full h-full flex justify-center items-center">
+    <div ref={containerRef} className="relative z-0 w-full h-full flex justify-center items-center">
       <Canvas
+        frameloop={inView ? "always" : "never"}
         camera={{ position: cameraPos, fov }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         gl={{
           alpha: transparent,
           antialias: true,

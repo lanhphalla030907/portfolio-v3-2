@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useMemo, useState, useCallback, Suspense } from "react";
+import React, { useRef, useMemo, useState, useCallback, Suspense, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Html, useTexture } from "@react-three/drei";
 import * as THREE from "three";
@@ -515,34 +515,50 @@ export function Globe3D({
     [config],
   );
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "200px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={cn("relative h-[500px] w-full", className)}>
-      <Canvas
-        gl={{
-          antialias: true,
-          alpha: true,
-          powerPreference: "high-performance",
-        }}
-        dpr={[1, 2]}
-        camera={{
-          fov: 45,
-          near: 0.1,
-          far: 1000,
-          position: [0, 0, mergedConfig.radius * 3.5],
-        }}
-        style={{
-          background: mergedConfig.backgroundColor || "transparent",
-        }}
-      >
-        <Suspense fallback={<LoadingFallback />}>
-          <Scene
-            markers={markers}
-            config={mergedConfig}
-            onMarkerClick={onMarkerClick}
-            onMarkerHover={onMarkerHover}
-          />
-        </Suspense>
-      </Canvas>
+    <div ref={containerRef} className={cn("relative h-[500px] w-full", className)}>
+      {inView && (
+        <Canvas
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+          }}
+          dpr={[1, 1.5]}
+          camera={{
+            fov: 45,
+            near: 0.1,
+            far: 1000,
+            position: [0, 0, mergedConfig.radius * 3.5],
+          }}
+          style={{
+            background: mergedConfig.backgroundColor || "transparent",
+          }}
+        >
+          <Suspense fallback={<LoadingFallback />}>
+            <Scene
+              markers={markers}
+              config={mergedConfig}
+              onMarkerClick={onMarkerClick}
+              onMarkerHover={onMarkerHover}
+            />
+          </Suspense>
+        </Canvas>
+      )}
     </div>
   );
 }

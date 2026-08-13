@@ -1,7 +1,22 @@
+"use client";
+import { useSyncExternalStore } from "react";
 import Lanyard from "@/components/ui/Lanyard";
 import SkillsMarquee from "@/components/SkillsMarquee";
 
+const subscribeDesktop = (onChange: () => void) => {
+  const mql = window.matchMedia("(min-width: 1024px)");
+  mql.addEventListener("change", onChange);
+  return () => mql.removeEventListener("change", onChange);
+};
+const getDesktopSnapshot = () => window.matchMedia("(min-width: 1024px)").matches;
+
 export default function Home() {
+  const isDesktop = useSyncExternalStore(
+    subscribeDesktop,
+    getDesktopSnapshot,
+    () => true,
+  );
+
   return (
     <main
       id="home"
@@ -12,7 +27,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.05),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_-20%,rgba(99,102,241,0.1),transparent_70%)]" />
       </div>
 
-      <div className="relative  flex min-h-screen flex-col items-center justify-start gap-10 px-6 py-20 lg:hidden sm:px-10">
+      <div className={`relative flex min-h-screen flex-col items-center justify-start gap-10 px-6 py-20 sm:px-10 ${isDesktop ? "hidden" : ""}`}>
         <section className="w-full text-center mt-4">
           <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1 tracking-wider uppercase">
             Hello, I&apos;m
@@ -37,7 +52,7 @@ export default function Home() {
         </section>
 
         <div className="-my-8 h-[350px] w-full max-w-md sm:h-[420px]">
-          <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+          {!isDesktop && <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />}
         </div>
 
         <section className="grid w-full max-w-lg grid-cols-2 gap-x-4 gap-y-10 pb-12 text-center">
@@ -76,7 +91,7 @@ export default function Home() {
         </section>
       </div>
 
-      <div className="relative hidden min-h-[42rem]  overflow-hidden lg:block lg:h-[max(100svh,42rem)]">
+      <div className={`relative hidden min-h-[42rem] overflow-hidden ${isDesktop ? "lg:block" : ""} lg:h-[max(100svh,42rem)]`}>
         <div className="site-container grid h-full grid-cols-[minmax(15rem,1fr)_minmax(20rem,30rem)_minmax(10rem,1fr)] items-center gap-4 xl:gap-8">
           {/* LEFT - KEEP ORIGINAL SIZE */}
           <section className="min-w-0 max-w-[20rem]">
@@ -109,7 +124,7 @@ export default function Home() {
           {/* CENTER - Lanyard KEEP ORIGINAL SIZE */}
           <div className="col-start-2 h-full min-h-[42rem]">
             <div className="h-full w-full">
-              <Lanyard lanyardWidth={2}  position={[0, 0, 20]} gravity={[0, -40, 0]} />
+              {isDesktop && <Lanyard lanyardWidth={2} position={[0, 0, 20]} gravity={[0, -40, 0]} />}
             </div>
           </div>
 

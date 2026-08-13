@@ -58,7 +58,7 @@ export default function AboutPortfolio() {
         ref={audioRef}
         src="/music/daydreamer.mp3"
         loop
-        preload="auto"
+        preload="none"
         onEnded={() => setIsPlaying(false)}
       />
 
@@ -230,140 +230,6 @@ export default function AboutPortfolio() {
       <section id="timeline" className="relative z-10 py-10 sm:py-24">
         <div className="max-w-7xl mx-auto px-4">
           <Timeline data={timelineData} />
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section className="relative z-10 py-24 sm:py-32">
-        <div className="site-container">
-          <SectionTitle
-            eyebrow="Education & focus"
-            title="Grounded in computer science. Growing through practice."
-          />
-          <div className="mt-12 grid gap-4 lg:grid-cols-2">
-            <article
-              data-reveal
-              className="rounded-[1.6rem] border border-zinc-200/70 bg-white/65 p-7 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/50 sm:p-9"
-            >
-              <GraduationCap className="size-6 text-indigo-500 dark:text-indigo-300" />
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">
-                Education
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-                Computer Science
-              </h3>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-                Royal University of Phnom Penh
-              </p>
-              <p className="mt-6 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                Building strong foundations in software engineering, data, and
-                systematic problem solving.
-              </p>
-            </article>
-            <article
-              data-reveal
-              className="rounded-[1.6rem] border border-indigo-200/60 bg-gradient-to-br from-indigo-100/70 to-white/60 p-7 shadow-sm backdrop-blur-sm dark:border-indigo-400/20 dark:from-indigo-500/15 dark:to-zinc-900/50 sm:p-9"
-            >
-              <Sparkles className="size-6 text-indigo-500 dark:text-indigo-300" />
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-                Now building
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-                Production-ready habits
-              </h3>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-                A practical journey toward full stack engineering.
-              </p>
-              <p className="mt-6 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                Improving architecture, communication, and product thinking with
-                every project I ship.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* Capabilities Section */}
-      <section className="relative z-10 border-y border-zinc-200/70 bg-zinc-50/70 py-24 dark:border-zinc-800 dark:bg-zinc-900/30 sm:py-32">
-        <div className="site-container">
-          <SectionTitle
-            eyebrow="What I do"
-            title="One product, connected from interface to infrastructure."
-          />
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {capabilitiesData.map((item) => {
-              const Icon = item.icon;
-              return (
-                <motion.article
-                  key={item.title}
-                  data-reveal
-                  whileHover={{ y: -7 }}
-                  className="group rounded-[1.5rem] border border-zinc-200/70 bg-white/75 p-6 shadow-sm backdrop-blur-sm transition-colors hover:border-indigo-300 dark:border-zinc-800 dark:bg-zinc-900/70 dark:hover:border-indigo-400/50"
-                >
-                  <div className="flex size-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-500 transition-transform group-hover:scale-110 dark:bg-indigo-400/10 dark:text-indigo-300">
-                    <Icon className="size-5" />
-                  </div>
-                  <h3 className="mt-8 text-lg font-semibold text-zinc-900 dark:text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                    {item.description}
-                  </p>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section className="relative z-10 py-24 sm:py-32">
-        <div className="site-container text-center">
-          <p
-            data-reveal
-            className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-500 dark:text-indigo-300"
-          >
-            Developer philosophy
-          </p>
-          <blockquote
-            data-reveal
-            className="mx-auto mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl"
-          >
-            Clean code is not only code that works.{" "}
-            <span className="text-zinc-400 dark:text-zinc-500">
-              It is code that people can understand, maintain, and improve.
-            </span>
-          </blockquote>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative z-10 pb-24 sm:pb-32">
-        <div
-          data-reveal
-          className="site-container overflow-hidden rounded-[2rem] border border-indigo-200/70 bg-gradient-to-br from-indigo-100 via-white to-violet-100 px-6 py-16 text-center shadow-[0_20px_60px_rgba(99,102,241,.15)] dark:border-indigo-400/20 dark:from-indigo-500/20 dark:via-zinc-900 dark:to-violet-500/20 sm:px-12 sm:py-24"
-        >
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-300">
-            Looking forward
-          </p>
-          <h2 className="mx-auto mt-5 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl">
-            My goal is to become a professional full stack engineer and build
-            impactful digital products.
-          </h2>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <a
-              href="mailto:landphalll@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700 dark:bg-white dark:text-zinc-950"
-            >
-              <ArrowRight className="size-4" /> Contact me
-            </a>
-            <Link
-              href="/#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-300 bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-700 transition hover:border-zinc-500 dark:border-zinc-700 dark:bg-zinc-900/70 dark:text-zinc-200"
-            >
-              View projects <ArrowRight className="size-4" />
-            </Link>
-          </div>
         </div>
       </section>
     </PageLayout>
