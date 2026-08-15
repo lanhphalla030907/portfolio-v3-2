@@ -3,10 +3,10 @@
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
-import { ChevronRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { InteractiveHoverButton } from "./ui/interactive-hover-button";
-import { ProjectCard, ProjectDialog, Badge } from "./ui/ProjectCard";
+import { Badge } from "./ui/ProjectCard";
 import { Project, projects } from "@/data/projects";
 import Link from "next/link";
 
@@ -40,16 +40,14 @@ const useCursorGlow = () => {
   return { springX, springY, enabled };
 };
 
-// --- Project Item Component (Same as featured design) ---
+
 
 const ProjectItem = ({ 
   project, 
-  index, 
-  onOpen 
+  index,
 }: { 
   project: Project; 
   index: number; 
-  onOpen: (p: Project) => void;
 }) => {
   return (
     <motion.div
@@ -159,18 +157,20 @@ const ProjectItem = ({
             </motion.div>
           )}
 
-          <motion.button
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-            whileHover={{ x: 5 }}
-            onClick={() => onOpen(project)}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
-            View Project
-            <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </motion.button>
+            <Link
+              href={`/project/${project.id}`}
+              className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+            >
+              View details
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </motion.div>
@@ -180,7 +180,6 @@ const ProjectItem = ({
 
 
 export default function SelectedProjects() {
-  const [dialogProject, setDialogProject] = useState<Project | null>(null);
   const { springX, springY, enabled } = useCursorGlow();
 
   // Sort projects: featured first, then others
@@ -233,7 +232,6 @@ export default function SelectedProjects() {
             key={project.id}
             project={project}
             index={idx}
-            onOpen={setDialogProject}
           />
         ))}
       </div>
@@ -250,13 +248,6 @@ export default function SelectedProjects() {
         <InteractiveHoverButton>View More</InteractiveHoverButton>
         </Link>
       </motion.div>
-
-      {/* Dialog */}
-      <ProjectDialog
-        project={dialogProject}
-        isOpen={!!dialogProject}
-        onClose={() => setDialogProject(null)}
-      />
     </section>
   );
 }

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Search, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import PageLayout from "@/components/layout/PageLayout";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { Badge, ProjectDialog } from "@/components/ui/ProjectCard";
+import { Badge } from "@/components/ui/ProjectCard";
 import { Project, projects } from "@/data/projects";
 import BlurText from "@/components/BlurText";
 
@@ -14,11 +14,9 @@ import BlurText from "@/components/BlurText";
 const ProjectItem = ({
   project,
   index,
-  onOpen,
 }: {
   project: Project;
   index: number;
-  onOpen: (p: Project) => void;
 }) => {
   return (
     <motion.div
@@ -134,21 +132,23 @@ const ProjectItem = ({
             </motion.div>
           )}
 
-          <motion.button
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-            whileHover={{ x: 5 }}
-            onClick={() => onOpen(project)}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
-            View Project
-            <ArrowUpRight
-              size={16}
-              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-            />
-          </motion.button>
+            <Link
+              href={`/project/${project.id}`}
+              className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+            >
+              View details
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </motion.div>
@@ -213,7 +213,6 @@ const SearchInput = ({
 
 // --- Main Component ---
 export default function ProjectsPage() {
-  const [dialogProject, setDialogProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -314,7 +313,6 @@ export default function ProjectsPage() {
                 <ProjectItem
                   project={project}
                   index={idx}
-                  onOpen={setDialogProject}
                 />
               </motion.div>
             ))}
@@ -347,13 +345,6 @@ export default function ProjectsPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-16 pt-10 border-t border-gray-200/60 dark:border-gray-700/60 text-center"
         ></motion.div>
-
-        {/* Dialog */}
-        <ProjectDialog
-          project={dialogProject}
-          isOpen={!!dialogProject}
-          onClose={() => setDialogProject(null)}
-        />
       </section>
     </PageLayout>
   );
