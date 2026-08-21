@@ -103,14 +103,14 @@ export default function Lanyard({
       <Canvas
         frameloop={inView ? "always" : "never"}
         camera={{ position: cameraPos, fov }}
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         gl={{
           alpha: transparent,
           antialias: true,
           powerPreference: "high-performance",
         }}
         performance={{
-          min: 0.5,
+          min: 0.75,
         }}
         onCreated={({ gl }) =>
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)

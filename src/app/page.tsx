@@ -7,6 +7,8 @@ import AboutMe from "@/page/AboutMe";
 import ContactPage from "@/page/ContactPage";
 import TechStack from "@/components/TechStack";
 import SelectedProjects from "@/components/SelectedProjects";
+import CertificatesSection from "@/components/CertificatesSection";
+import Footer from "@/components/layout/Footer";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -18,6 +20,7 @@ export default function Page() {
         <AboutMe />
         <TechStack />
         <SelectedProjects />
+        <CertificatesSection />
         <ContactPage />
         
         {/* CTA Section */}
@@ -50,7 +53,8 @@ export default function Page() {
             </div>
           </div>
         </section>
-        
+
+        <Footer />
       </div>
     </PageLayout>
   );
