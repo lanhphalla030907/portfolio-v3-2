@@ -99,11 +99,11 @@ export default function Home() {
               Hello, I&apos;m
             </p>
 
-            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.8] tracking-tighter text-gray-900 dark:text-white">
+            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.8] text-gray-900 dark:text-white">
               LANH
             </h1>
 
-            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tighter text-gray-900 dark:text-white mb-4 lg:mb-6">
+            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] text-gray-900 dark:text-white mb-4 lg:mb-6">
               PHALLA
             </h1>
 

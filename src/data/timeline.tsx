@@ -214,23 +214,6 @@ export const timelineData: TimelineItem[] = [
     type: "certificate",
   },
   {
-    title: "Web Development",
-    date: "Aug 2026",
-    institution: "New Information Technology",
-    description:
-      "Comprehensive full-stack development training covering both frontend and backend technologies. Built complete web applications from scratch with modern architectures.",
-    technologies: [
-      { name: "React", icon: <SiReact />, color: "#61DAFB" },
-        { name: "MySQL", icon: <SiMysql />, color: "#4479A1" },
-      { name: "REST APIs", icon: <FaServer />, color: "#10B981" },
-      { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
-      { name: "Express.js", icon: <SiExpress />, color: "#000000" },
-    
-    ],
-    images: [image2],
-    type: "course",
-  },
-  {
     title: "Spring Boot & Java",
     date: "Present",
     institution: "Etec Center",

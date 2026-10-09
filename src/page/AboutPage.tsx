@@ -156,6 +156,7 @@ const PhotoSection = () => {
           src="/placeholder-avatar.jpg"
           alt="Profile"
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
         />
         <motion.div
@@ -346,10 +347,14 @@ const Resume = () => {
       transition={{ duration: 0.6 }}
       className="max-w-2xl mx-auto mb-16 text-center"
     >
-      <button className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
+      <a
+        href="/cv.pdf"
+        download="Abhinav_CV.pdf"
+        className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-medium hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/25"
+      >
         <Download size={16} />
         <span>Download Resume</span>
-      </button>
+      </a>
     </motion.div>
   );
 };

@@ -31,15 +31,6 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
   return (
     <>
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-white">
-            Project Gallery
-          </h2>
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">
-            {images.length} images
-          </span>
-        </div>
-
         {/* Main Image Grid */}
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
           {images.map((image, index) => (
@@ -48,7 +39,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className={`relative overflow-hidden rounded-xl border border-zinc-200/70 bg-white/50 dark:border-zinc-700/70 dark:bg-zinc-900/50 cursor-pointer group ${
+              className={`relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200/70 bg-zinc-100/70 ring-indigo-400/60 transition-all duration-300 hover:ring-2 dark:border-zinc-800/70 dark:bg-zinc-900/60 ${
                 index === 0 ? "col-span-2 row-span-2" : ""
               }`}
               style={{ aspectRatio: index === 0 ? "16/10" : "4/3" }}
@@ -58,11 +49,11 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                 src={image}
                 alt={`${title} - Image ${index + 1}`}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               {index === 0 && (
-                <span className="absolute bottom-2 right-2 rounded-full bg-black/60 px-2 py-0.5 text-xs text-white backdrop-blur-sm">
+                <span className="absolute bottom-2 right-2 rounded-full border border-zinc-200/70 bg-white/80 px-2 py-0.5 text-xs font-medium text-zinc-600 backdrop-blur-sm dark:border-zinc-700/70 dark:bg-zinc-900/80 dark:text-zinc-300">
                   Cover
                 </span>
               )}
@@ -106,6 +97,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
                     src={images[currentIndex]}
                     alt={`${title} - Image ${currentIndex + 1}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     className="object-contain"
                   />
                 </div>

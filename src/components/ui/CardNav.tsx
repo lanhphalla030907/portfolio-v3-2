@@ -1,7 +1,6 @@
 "use client";
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-// use your own icon import if react-icons is not available
 import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import { ThemeToggle } from "../ThemeToggle";
@@ -40,11 +39,10 @@ const CardNav: React.FC<CardNavProps> = ({
   ease = "power3.out",
   baseColor = "#fff",
   menuColor,
-  buttonBgColor,
-  buttonTextColor,
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
   const navRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -173,7 +171,7 @@ const CardNav: React.FC<CardNavProps> = ({
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
-          {/* Left section - Burger Menu (visible on all screens) */}
+          {/* Left - Burger */}
           <div className="flex items-center">
             <div
               className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
@@ -203,7 +201,7 @@ const CardNav: React.FC<CardNavProps> = ({
             </div>
           </div>
 
-
+          {/* Center - Logo */}
           <div className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <img
               src={logo}
@@ -212,12 +210,27 @@ const CardNav: React.FC<CardNavProps> = ({
             />
           </div>
 
-          {/* Right section - Theme Toggle */}
-          <div className="flex items-center">
+          {/* Right - CV + Theme */}
+          <div className="flex items-center gap-1.5">
+            {/* CV Download Button (light-mode only) */}
+            <a
+              href="/cv.pdf"
+              download="Abhinav_CV.pdf"
+              className="p-2.5 text-gray-800 dark:text-gray-200 hover:scale-110 transition-all active:scale-95"
+              aria-label="Download CV"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
+
             <ThemeToggle />
           </div>
         </div>
 
+        {/* Expanded Content */}
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
             isExpanded

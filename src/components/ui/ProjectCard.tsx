@@ -8,7 +8,7 @@ import { useState, useRef } from "react";
 import { Project } from "@/data/projects";
 
 export const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="bg-gray-100/80 dark:bg-gray-700/80 text-gray-600 dark:text-gray-300 text-xs px-2.5 py-0.5 rounded-full font-medium tracking-wide border border-gray-200/40 dark:border-gray-600/40">
+  <span className="inline-flex items-center rounded-full border border-zinc-200/70 bg-zinc-100/70 px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-zinc-600 dark:border-zinc-800 dark:bg-zinc-800/70 dark:text-zinc-300">
     {children}
   </span>
 );

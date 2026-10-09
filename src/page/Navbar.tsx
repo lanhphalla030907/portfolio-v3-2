@@ -1,4 +1,3 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
 import CardNav from "@/components/ui/CardNav";
 const logo = "/name.png";
 
@@ -20,6 +19,11 @@ export const Navbar = () => {
           label: "Select Project",
           href: "/#select-project",
           ariaLabel: "Go to select project",
+        },
+        {
+          label: "Certificates & Courses",
+          href: "/#certificates",
+          ariaLabel: "Go to certificates and courses",
         },
         {
           label: "Contact",
