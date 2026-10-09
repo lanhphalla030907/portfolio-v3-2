@@ -45,19 +45,19 @@ const contactInfo = [
 const socialLinks = [
   {
     icon: FaFacebook,
-    href: "https://facebook.com/yourusername",
+    href: "https://facebook.com/lanh.phala",
     label: "Facebook",
     color: "hover:text-blue-600",
   },
   {
     icon: FaTelegram,
-    href: "https://t.me/yourusername",
+    href: "https://t.me/lanhphalla03",
     label: "Telegram",
     color: "hover:text-sky-500",
   },
   {
     icon: FaGithub,
-    href: "https://github.com/yourusername",
+    href: "https://github.com/lanhphalla030907",
     label: "GitHub",
     color: "hover:text-gray-900 dark:hover:text-white",
   },
